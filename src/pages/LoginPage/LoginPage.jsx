@@ -1,5 +1,6 @@
-import { Flex } from "antd"
+import { Flex, message } from "antd"
 import { Fragment } from "react"
+import propTypes from "prop-types"
 import { Button, Checkbox, Form, Input } from 'antd';
 
 import "./LoginPage.scss"
@@ -10,10 +11,15 @@ const LoginPage = ({setIsLogin}) => {
   const navigate = useNavigate()
   const onFinish = (values) => {
     const getData = async () => {
-      let {data} = await axios.post("https://reqres.in/api/login", values)
-      localStorage.setItem("token", data.token)
-      setIsLogin(true)
-      navigate("/dashboard")
+      try {
+        let {data} = await axios.post("https://reqres.in/api/login", values)
+        localStorage.setItem("token", data.token)
+        setIsLogin(true)
+        navigate("/dashboard")
+      } catch (err) {
+        message.error(err.response.data.error);
+      }
+      
     }
     getData()
   };
@@ -88,6 +94,10 @@ const LoginPage = ({setIsLogin}) => {
       </Flex>
     </Fragment>
   )
+}
+
+LoginPage.propTypes = {
+  setIsLogin: propTypes.func,
 }
 
 export default LoginPage

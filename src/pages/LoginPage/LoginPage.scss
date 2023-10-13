@@ -1,11 +1,14 @@
 .ofa__login__block{
   height: 100vh;
+  background-color: #aaa;
 }
 
 .ofa__login__form{
-  border: 1px solid #001529;
+  border: 1px solid #96c4ef;
   padding: 24px;
   border-radius: 24px;
+  background-color: white;
+  box-shadow: 5px 5px 20px 0.5px #96c4ef;
 }
 
 .ofa__login__btn{

@@ -27,6 +27,7 @@ const AdminLayout = ({setIsLogin}) => {
       onOk: () => {
         setIsLogin(false)
         navigate("/login")
+        localStorage.removeItem("token")
       }
     });
   }
